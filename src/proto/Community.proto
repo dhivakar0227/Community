@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+package community;
+
+option go_package="communitypb";
+
+// generate 
+
+// community member
+message member {
+    string id = 1;
+    string firstName = 2;
+    string lastName = 3;
+    string cognizantTitle = 4;
+    string cdeTitle = 5;
+}
+
+// add community member request
+message addMembersRequest {
+    member memReq = 1;
+}
+
+message addMembersResponse {
+    member memRes = 1;
+    string result = 2;
+}
+
+message showMemberRequest {
+    member memReq = 1;
+}
+
+message showMemberResponse {
+    member memRes = 1;
+    string result = 2;
+}
+
+message getMembersRequest {
+    member memReq = 1;
+}
+
+message getMembersResponse {
+    member memRes = 1;
+    string result = 2;
+}
+
+message deleteMemberRequest {
+    member memReq = 1;
+}
+
+message deleteMemberResponse {
+    string result = 1;
+}
+
+service CommunityService {
+    rpc AddMembers (addMembersRequest) returns (addMembersResponse) {};
+    rpc ShowMember (showMemberRequest) returns (showMemberResponse) {};
+    rpc GetMembers (getMembersRequest) returns (getMembersResponse) {};
+    rpc DeleteMember (deleteMemberRequest) returns (deleteMemberResponse) {};
+}
+
+
+
