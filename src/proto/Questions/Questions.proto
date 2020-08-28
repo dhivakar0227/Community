@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package questionnaire;
+
+option go_package="questionspb";
+
+message question {
+    string questionId = 1;
+    string questionDesc =2;
+    string questionType = 3;
+    oneof questionValidValues {
+        yesno questionYesNo = 4;
+        secondtype questionSecondType = 5;
+    }
+    string questionValid = 6;
+}
+
+enum yesno {
+    YESNOUNKNOWN = 0;
+    YESNONOTSETUP = 1;
+    YES = 2;
+    NO = 3;
+}
+
+enum secondtype {
+    SECONDTYPEUNKNOWN = 0;
+    SECONDTYPENOTSETUP = 1;
+    HIGH = 2;
+    LOW = 3;
+}
+
+message getQuestionsRequest {}
+
+message getQuestionsResponse {
+    repeated question questionSlice = 1;    
+}
+
+service QuestionService {
+    rpc getQuestions (getQuestionsRequest) returns (getQuestionsResponse) {};
+}
+
