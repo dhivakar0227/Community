@@ -1,2 +1,2 @@
 protoc.exe -I=src\proto\ --go_out=plugins=grpc:src\proto\ src\proto\Community.proto
-protoc.exe -I=src\proto\ --go_out=plugins=grpc:src\proto\ src\proto\Questions.proto
+protoc.exe -I=src\proto\Questions --go_out=plugins=grpc:src\proto\Questions src\proto\Questions\Questions.proto

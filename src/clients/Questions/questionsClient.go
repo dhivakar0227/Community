@@ -22,17 +22,38 @@ func main() {
 	c := questionspb.NewQuestionServiceClient(cc)
 
 	dogetQuestions(c)
+	//doCreateQuestions(c)
+}
+
+//create a questions
+func doCreateQuestions(c questionspb.QuestionServiceClient) {
+	//CreateQuestions(ctx context.Context, in *CreateQuestionsRequest) (*CreateQuestionsResponse, error)
+	ques := questionspb.Question{
+		QuestionDesc:  "What is your Name?",
+		QuestionType:  "Dropdown",
+		QuestionValid: "1",
+	}
+
+	req := &questionspb.CreateQuestionsRequest{
+		CQuestion: &ques,
+	}
+
+	resp, err := c.CreateQuestions(context.Background(), req)
+	if err != nil {
+		fmt.Printf("Error occurred during creating a question %v ", err)
+		return
+	}
+	fmt.Printf("Details of the questions added %+v \n", resp)
 
 }
 
 func dogetQuestions(c questionspb.QuestionServiceClient) {
 	res, err := c.GetQuestions(context.Background(), &questionspb.GetQuestionsRequest{})
 	if err != nil {
-		fmt.Printf("Error occurred during addMember %v - ", err)
+		fmt.Printf("Error occurred during getMember %v", err)
 		return
 	}
 	for i, key := range res.GetQuestionSlice() {
-		fmt.Printf("Result of addMember %v %+v \n", i, key)
+		fmt.Printf("Result of getMember %v %+v \n", i, key)
 	}
-
 }

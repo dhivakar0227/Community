@@ -35,7 +35,17 @@ message getQuestionsResponse {
     repeated question questionSlice = 1;    
 }
 
+message createQuestionsRequest {
+    question cQuestion = 1;    
+}
+
+message createQuestionsResponse {
+    question cQuestion = 1;
+    string result = 2;
+}
+
 service QuestionService {
     rpc getQuestions (getQuestionsRequest) returns (getQuestionsResponse) {};
+    rpc createQuestions (createQuestionsRequest) returns (createQuestionsResponse) {};
 }
 
