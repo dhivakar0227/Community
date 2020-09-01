@@ -10,6 +10,7 @@ import (
 
 	questionspb "github.com/dhivakarj/Community/src/proto/Questions"
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	objectid "go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 	options "go.mongodb.org/mongo-driver/mongo/options"
@@ -151,4 +152,47 @@ func (s *server) CreateQuestions(ctx context.Context, req *questionspb.CreateQue
 		},
 	}
 	return resp, nil
+}
+
+// implement Update questions
+func (s *server) UpdateQuestions(ctx context.Context, res *questionspb.UpdateQuestionsRequest) (*questionspb.UpdateQuestionsResponse, error) {
+
+	objID, err := primitive.ObjectIDFromHex(res.GetCQuestion().GetQuestionId())
+	if err != nil {
+		log.Fatalf("error converting objectid %v", err)
+		fmt.Printf("error converting objectid %v", err)
+		return nil, err
+	}
+
+	filter := bson.M{"_id": bson.M{"$eq": objID}}
+	update := bson.M{"$set": bson.M{
+		"qdesc":  res.GetCQuestion().GetQuestionDesc(),
+		"qtype":  res.GetCQuestion().GetQuestionType(),
+		"qvalid": res.GetCQuestion().GetQuestionValid(),
+	},
+	}
+
+	result, err := collection.UpdateOne(context.Background(), filter, update)
+	if err != nil {
+		log.Fatalf("update error %v", err)
+		fmt.Printf("update error %v", err)
+		return nil, err
+	}
+
+	if result.ModifiedCount == 0 {
+		log.Fatalf("update failed %v", err)
+		fmt.Printf("update failed %v", err)
+		return nil, err
+	}
+
+	resp := questionspb.UpdateQuestionsResponse{
+		CQuestion: &questionspb.Question{
+			QuestionId:    objID.Hex(),
+			QuestionDesc:  res.GetCQuestion().GetQuestionDesc(),
+			QuestionType:  res.GetCQuestion().GetQuestionType(),
+			QuestionValid: res.GetCQuestion().GetQuestionValid(),
+		},
+	}
+
+	return &resp, nil
 }

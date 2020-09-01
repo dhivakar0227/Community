@@ -44,8 +44,18 @@ message createQuestionsResponse {
     string result = 2;
 }
 
+message updateQuestionsRequest {
+    question cQuestion = 1;    
+}
+
+message updateQuestionsResponse {
+    question cQuestion = 1;
+    string result = 2;
+}
+
 service QuestionService {
     rpc getQuestions (getQuestionsRequest) returns (getQuestionsResponse) {};
     rpc createQuestions (createQuestionsRequest) returns (createQuestionsResponse) {};
+    rpc updateQuestions (updateQuestionsRequest) returns (updateQuestionsResponse) {};
 }
 
