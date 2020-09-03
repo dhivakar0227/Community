@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"log"
 
-	communitypb "github.com/dhivakarj/Community/src/proto/Community"
+	communitypb "github.com/dhivakar0227/Community/src/proto/Community"
 	"google.golang.org/grpc"
 )
 

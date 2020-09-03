@@ -8,7 +8,7 @@ import (
 	"os"
 	"os/signal"
 
-	questionspb "github.com/dhivakarj/Community/src/proto/Questions"
+	questionspb "github.com/dhivakar0227/Community/src/proto/Questions"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	objectid "go.mongodb.org/mongo-driver/bson/primitive"

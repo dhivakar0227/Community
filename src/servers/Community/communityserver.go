@@ -6,7 +6,7 @@ import (
 	"log"
 	"net"
 
-	communitypb "github.com/dhivakarj/Community/src/proto/Community"
+	communitypb "github.com/dhivakar0227/Community/src/proto/Community"
 	"google.golang.org/grpc"
 )
 

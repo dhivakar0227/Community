@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"log"
 
-	questionspb "github.com/dhivakarj/Community/src/proto/Questions"
+	questionspb "github.com/dhivakar0227/Community/src/proto/Questions"
 	"google.golang.org/grpc"
 )
 
@@ -21,8 +21,8 @@ func main() {
 
 	c := questionspb.NewQuestionServiceClient(cc)
 
-	//dogetQuestions(c)
-	//doCreateQuestions(c)
+	doCreateQuestions(c)
+	dogetQuestions(c)
 	doupdateQuestion(c)
 }
 
@@ -30,7 +30,7 @@ func main() {
 func doCreateQuestions(c questionspb.QuestionServiceClient) {
 	//CreateQuestions(ctx context.Context, in *CreateQuestionsRequest) (*CreateQuestionsResponse, error)
 	ques := questionspb.Question{
-		QuestionDesc:  "What is your Name?",
+		QuestionDesc:  "What is your DOB?",
 		QuestionType:  "Dropdown",
 		QuestionValid: "1",
 	}
@@ -62,7 +62,7 @@ func dogetQuestions(c questionspb.QuestionServiceClient) {
 func doupdateQuestion(c questionspb.QuestionServiceClient) {
 	//UpdateQuestions(ctx context.Context, in *UpdateQuestionsRequest, opts ...grpc.CallOption) (*UpdateQuestionsResponse, error)
 	ques := questionspb.Question{
-		QuestionId:    "5f4d714008316b59a91a7149",
+		QuestionId:    "5f515514adc14b5290def9b8",
 		QuestionDesc:  "What is my Name?",
 		QuestionType:  "freeflow",
 		QuestionValid: "0",
