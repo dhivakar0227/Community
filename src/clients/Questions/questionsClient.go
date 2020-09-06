@@ -21,6 +21,8 @@ func main() {
 
 	c := questionspb.NewQuestionServiceClient(cc)
 
+	resp, _ := c.ReturnSameString(context.Background(), &questionspb.ReturnSameStringRequest{})
+	fmt.Println(resp.GetResult())
 	doCreateQuestions(c)
 	dogetQuestions(c)
 	doupdateQuestion(c)
@@ -62,8 +64,8 @@ func dogetQuestions(c questionspb.QuestionServiceClient) {
 func doupdateQuestion(c questionspb.QuestionServiceClient) {
 	//UpdateQuestions(ctx context.Context, in *UpdateQuestionsRequest, opts ...grpc.CallOption) (*UpdateQuestionsResponse, error)
 	ques := questionspb.Question{
-		QuestionId:    "5f515514adc14b5290def9b8",
-		QuestionDesc:  "What is my Name?",
+		QuestionId:    "5f54628cfedd9b01a99ae88c",
+		QuestionDesc:  "What is my Names?",
 		QuestionType:  "freeflow",
 		QuestionValid: "0",
 	}

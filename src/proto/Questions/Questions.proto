@@ -53,9 +53,17 @@ message updateQuestionsResponse {
     string result = 2;
 }
 
+message returnSameStringResponse{
+    string result = 1;
+}
+message returnSameStringRequest{
+    
+}
+
 service QuestionService {
     rpc getQuestions (getQuestionsRequest) returns (getQuestionsResponse) {};
     rpc createQuestions (createQuestionsRequest) returns (createQuestionsResponse) {};
     rpc updateQuestions (updateQuestionsRequest) returns (updateQuestionsResponse) {};
+    rpc returnSameString(returnSameStringRequest) returns (returnSameStringResponse) {};
 }
 

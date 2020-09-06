@@ -196,3 +196,7 @@ func (s *server) UpdateQuestions(ctx context.Context, res *questionspb.UpdateQue
 
 	return &resp, nil
 }
+
+func (s *server) ReturnSameString(ctx context.Context, req *questionspb.ReturnSameStringRequest) (*questionspb.ReturnSameStringResponse, error) {
+	return &questionspb.ReturnSameStringResponse{Result: "Successful"}, nil
+}
