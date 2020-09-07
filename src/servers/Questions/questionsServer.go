@@ -45,6 +45,21 @@ func main() {
 	// server is starting
 	fmt.Printf("Server is starting....\n")
 
+	fmt.Println("Calling to create a quesiton")
+	qi := questionItem{
+		Description: "Dhivakar what is your name?",
+		Type:        "Freeform",
+		Valid:       "1",
+	}
+
+	result, err := collection.InsertOne(context.Background(), qi)
+	if err != nil {
+		log.Fatalf("error when trying to insert into %v", err)
+		fmt.Printf("error when trying to insert into %v", err)
+	}
+
+	fmt.Printf("created question now %v", result.InsertedID.(objectid.ObjectID))
+
 	lis, err := net.Listen("tcp", "0.0.0.0:50053")
 	if err != nil {
 		log.Fatalf("Server failed to connect %v", err)
