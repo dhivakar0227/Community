@@ -14,16 +14,18 @@ RUN go get google.golang.org/grpc
 # Install protoc-gen-go
 RUN go get github.com/golang/protobuf/protoc-gen-go
 
+RUN go get go.mongodb.org/mongo-driver/mongo
+
 RUN go env
 
-ADD . /go/src/github
+ADD . /go/src/github.com/dhivakar0227/Community
 
-RUN ls /go/src/github/Community
+RUN ls /go/src/github.com/dhivakar0227/Community
 
-RUN go install github/Community/src/Servers/Questions
+RUN go install github.com/dhivakar0227/Community/src/servers/Questions
 
-RUN ls /go/bin/Servers
+RUN ls /go/bin/Questions
 
-ENTRYPOINT ["/go/bin/Servers"]
+ENTRYPOINT ["/go/bin/servers"]
 
 EXPOSE 8081
